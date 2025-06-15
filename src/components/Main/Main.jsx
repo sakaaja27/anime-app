@@ -2,8 +2,8 @@ import { useState } from "react";
 import ListBox from "./ListBox";
 import SelectedBox from "./SelectedBox";
 
-export default function Main({animesData}) {
-    const [animes, setAnimes] = useState(animesData);
+export default function Main({animes}) {
+    
     const [selectedAnime, setSelectedAnime] = useState(animes[0]);
     function handleSelectedAnime(id) {
         const newAnime = animes.filter((anime) => anime.mal_id === id);

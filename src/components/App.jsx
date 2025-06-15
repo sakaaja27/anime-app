@@ -3,6 +3,8 @@
 import '../App.css';
 import Main from './Main/Main';
 import Navbar from './Header/Navbar';
+import { useState } from 'react';
+import Search, { NumResult } from './Header/Search';
 
 
 const animesData = [
@@ -45,14 +47,15 @@ const animesData = [
 ];
 
 export default function App() {
-  
-  
-
+  const [animes, setAnimes] = useState(animesData);
   return (
     <>
-      <Navbar/>
-      <Main animesData={animesData}/>
-      
+      <Navbar>
+        <Search>
+          <NumResult animes={animes}/>
+        </Search>
+      </Navbar>
+      <Main animes={animes}/>
     </>
   );
 }
