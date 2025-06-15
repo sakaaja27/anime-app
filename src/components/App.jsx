@@ -5,6 +5,7 @@ import Main from './Main/Main';
 import Navbar from './Header/Navbar';
 import { useState } from 'react';
 import Search, { NumResult } from './Header/Search';
+import Box, { AnimeList, Detail } from './Main/Box';
 
 
 const animesData = [
@@ -48,6 +49,11 @@ const animesData = [
 
 export default function App() {
   const [animes, setAnimes] = useState(animesData);
+  const [selectedAnime, setSelectedAnime] = useState(animes[0]);
+    function handleSelectedAnime(id) {
+        const newAnime = animes.filter((anime) => anime.mal_id === id);
+        setSelectedAnime(newAnime[0]);
+    }
   return (
     <>
       <Navbar>
@@ -55,7 +61,14 @@ export default function App() {
           <NumResult animes={animes}/>
         </Search>
       </Navbar>
-      <Main animes={animes}/>
+      <Main>
+        <Box>
+          <AnimeList animes= {animes} onSelectedAnime={handleSelectedAnime}/>
+        </Box>
+        <Box>
+          <Detail selectedAnime={selectedAnime}/>
+        </Box>
+      </Main>
     </>
   );
 }
